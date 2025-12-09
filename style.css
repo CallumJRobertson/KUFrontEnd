@@ -180,3 +180,23 @@ input:checked + .slider:before { transform: translateX(20px); background-color: 
     .detail-info { text-align: center; }
     .detail-info h1 { font-size: 28px; }
 }
+/* Align header elements */
+.ai-header-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+/* Style for the CACHED pill */
+.cache-status-pill {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(99, 102, 241, 0.1); /* Soft Accent Background */
+    color: var(--accent); /* Accent Text Color */
+    border: 1px solid rgba(99, 102, 241, 0.5);
+    /* Ensure it doesn't wrap on small screens */
+    white-space: nowrap; 
+}
