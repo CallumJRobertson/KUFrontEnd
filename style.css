@@ -37,73 +37,108 @@ body {
 
 .logo-text-main { font-weight: 700; font-size: 20px; text-decoration: none; color: white; }
 .nav-links a { color: var(--text-muted); text-decoration: none; margin-left: 20px; font-weight: 500; transition: color 0.2s; }
-.nav-links a:hover { color: var(--accent); }
+.nav-links a:hover, .nav-links a.active { color: var(--accent); }
 
-/* Detail Page Structure */
-.detail-hero {
-  position: relative;
-  width: 100%;
-  height: 60vh; /* Takes up 60% of screen height */
-  overflow: hidden;
+/* --- Search Page Hero --- */
+.search-hero {
+  text-align: center;
+  padding: 80px 20px 40px;
+  background: radial-gradient(circle at center, #1c1c1e 0%, #000000 70%);
 }
 
-.hero-backdrop {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.6;
-  /* Fades image into black at the bottom */
-  mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-}
+.search-title { font-size: 32px; font-weight: 700; margin-bottom: 20px; }
+.search-container { max-width: 500px; margin: 0 auto; display: flex; gap: 10px; }
 
-.detail-content {
-  position: relative;
-  max-width: 800px;
-  margin: -120px auto 0; /* Pulls content UP over the hero image */
-  padding: 20px;
-  z-index: 10;
-}
-
-.poster-shadow {
-  width: 160px;
+input[type="text"] {
+  flex: 1;
+  padding: 14px 16px;
   border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-  margin-bottom: 20px;
+  border: 1px solid #333;
+  background: #1c1c1e;
+  color: white;
+  font-size: 16px;
+}
+input[type="text"]:focus { outline: none; border-color: var(--accent); }
+
+select {
+  padding: 0 16px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  background: #1c1c1e;
+  color: white;
+  appearance: none; /* iOS style */
 }
 
+button.search-btn {
+  padding: 14px 24px;
+  border-radius: 12px;
+  border: none;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+button.search-btn:hover { opacity: 0.9; }
+
+/* --- Popular Page Filters --- */
+.filter-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 30px 0 20px;
+}
+
+.filter-button {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: var(--text-muted);
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.filter-button:hover { background: rgba(255,255,255,0.2); }
+.filter-button.active { background: var(--accent); color: white; }
+
+/* --- Shared Grid & Cards --- */
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card { cursor: pointer; transition: transform 0.2s; }
+.card:hover { transform: scale(1.03); }
+.card-poster-wrapper { border-radius: 12px; overflow: hidden; aspect-ratio: 2/3; margin-bottom: 8px; background: #222; }
+.card-poster-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+.card-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; color: white; }
+.card-meta { font-size: 12px; color: var(--text-muted); }
+
+/* --- Detail Page Styles --- */
+.detail-hero { position: relative; width: 100%; height: 60vh; overflow: hidden; }
+.hero-backdrop { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; mask-image: linear-gradient(to bottom, black 0%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%); }
+.detail-content { position: relative; max-width: 800px; margin: -120px auto 0; padding: 20px; z-index: 10; }
+.poster-shadow { width: 160px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); margin-bottom: 20px; }
 h1 { font-size: 36px; font-weight: 800; margin: 0 0 10px 0; letter-spacing: -1px; }
 
 /* Status Badges */
-.status-badge {
-  display: inline-block;
-  padding: 6px 12px;
-  border-radius: 100px;
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 12px;
-}
+.status-badge { display: inline-block; padding: 6px 12px; border-radius: 100px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
 .status-badge.confirmed { background: rgba(48, 209, 88, 0.2); color: var(--badge-green); border: 1px solid rgba(48, 209, 88, 0.3); }
 .status-badge.cancelled { background: rgba(255, 69, 58, 0.2); color: var(--badge-red); border: 1px solid rgba(255, 69, 58, 0.3); }
 .status-badge.unknown { background: rgba(142, 142, 147, 0.2); color: var(--badge-gray); border: 1px solid rgba(142, 142, 147, 0.3); }
 
-/* AI Intelligence Box */
-.ai-box {
-  background: var(--bg-card);
-  border-radius: 18px;
-  padding: 24px;
-  margin-top: 30px;
-  border: 1px solid rgba(255,255,255,0.1);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-}
-
+/* AI Box */
+.ai-box { background: var(--bg-card); border-radius: 18px; padding: 24px; margin-top: 30px; border: 1px solid rgba(255,255,255,0.1); }
 .ai-header { display: flex; align-items: center; gap: 8px; color: #af52de; font-weight: 600; margin-bottom: 12px; }
 .ai-text { line-height: 1.6; color: #e5e5e7; font-size: 15px; }
-.ai-sources { font-size: 12px; color: var(--text-muted); margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05); }
+.ai-sources { font-size: 12px; color: var(--text-muted); margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px; }
 .ai-sources a { color: var(--accent); text-decoration: none; margin-right: 10px; }
-
-/* Spinner */
 .spinner { width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; }
 @keyframes spin { to { transform: rotate(360deg); } }
