@@ -1,43 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>KeepUp</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <title>KeepUp – Track TV Shows & Movies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <header class="navbar">
-        <a href="index.html" class="logo-text-main">KeepUp</a>
-        <nav class="nav-links">
-            <a href="index.html" class="active">Search</a>
-            <a href="popular.html">Popular</a>
-        </nav>
-    </header>
-
-    <main>
-        <section class="search-hero">
-            <h1 class="search-title">Find a show</h1>
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search for TV or Movies..." />
-                <select id="searchType">
-                    <option value="tv">TV Shows</option>
-                    <option value="movie">Movies</option>
-                </select>
-                <button id="searchBtn" class="search-btn">Go</button>
+<body class="dark-mode">
+    <div class="app-shell">
+        <header class="navbar">
+            <div class="nav-left">
+                <a href="index.html" class="logo-pill">
+                    <span class="logo-dot"></span>
+                    <div>
+                        <div class="logo-text-main">KeepUp</div>
+                        <div class="logo-text-sub">Tracker</div>
+                    </div>
+                </a>
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-active">Search</a>
+                    <a href="popular.html">Popular</a>
+                </nav>
             </div>
-        </section>
-
-        <section>
-            <div style="text-align: center; margin-top: 20px; color: var(--text-muted);">
-                <span id="resultsMeta"></span>
+            <div class="toggle-container">
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle" checked>
+                    <span class="slider round"></span>
+                </label>
+                <label id="darkModeToggleLabel" class="toggle-label-text">Dark mode</label>
             </div>
-            <div id="results" class="results-grid"></div>
-        </section>
-    </main>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div class="hero-main-card">
+                    <h1 class="hero-title">Find your next obsession</h1>
+                    <p class="hero-subtitle">Search across TV shows and movies to get instant AI-powered status updates.</p>
+                    <div class="search-box-row">
+                        <div class="input-wrapper">
+                            <input type="text" id="searchInput" class="search-input" placeholder="Search title (e.g. Severance)...">
+                        </div>
+                        <div class="select-wrapper">
+                            <select id="searchType" class="search-select">
+                                <option value="tv">TV Shows</option>
+                                <option value="movie">Movies</option>
+                            </select>
+                        </div>
+                        <button id="searchBtn" class="search-button">Go</button>
+                    </div>
+                </div>
+                <aside class="hero-side-card">
+                    <h2 class="hero-side-title">Syncs with iOS</h2>
+                    <p class="hero-side-sub">Use this dashboard to check statuses powered by OpenAI. Your tracked list stays on your iPad/iPhone.</p>
+                    <div class="hero-chip-row">
+                        <div class="chip">Tracks TV & Movies</div>
+                        <div class="chip">AI Summaries</div>
+                        <div class="chip">OpenAI + TMDb</div>
+                    </div>
+                </aside>
+            </section>
+
+            <section>
+                <div class="section-title-row">
+                    <h2>Search Results</h2>
+                    <span id="resultsMeta" style="color:var(--text-muted); font-size:13px;"></span>
+                </div>
+                <div id="results" class="results-grid"></div>
+            </section>
+        </main>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="config.js"></script>
+    <script src="script.js"></script>
     <script src="search.js"></script>
 </body>
 </html>
