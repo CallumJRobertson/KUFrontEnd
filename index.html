@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>KeepUp – Track TV Shows & Movies</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark-mode">
@@ -27,7 +27,7 @@
                     <input type="checkbox" id="darkModeToggle" checked>
                     <span class="slider round"></span>
                 </label>
-                <label id="darkModeToggleLabel" class="toggle-label-text">Dark mode</label>
+                <label class="toggle-label-text">Dark mode</label>
             </div>
         </header>
 
@@ -36,9 +36,10 @@
                 <div class="hero-main-card">
                     <h1 class="hero-title">Find your next obsession</h1>
                     <p class="hero-subtitle">Search across TV shows and movies to get instant AI-powered status updates.</p>
+                    
                     <div class="search-box-row">
                         <div class="input-wrapper">
-                            <input type="text" id="searchInput" class="search-input" placeholder="Search title (e.g. Severance)...">
+                            <input type="text" id="searchInput" class="search-input" placeholder="Search title...">
                         </div>
                         <div class="select-wrapper">
                             <select id="searchType" class="search-select">
@@ -49,20 +50,20 @@
                         <button id="searchBtn" class="search-button">Go</button>
                     </div>
                 </div>
+                
                 <aside class="hero-side-card">
                     <h2 class="hero-side-title">Syncs with iOS</h2>
                     <p class="hero-side-sub">Use this dashboard to check statuses powered by OpenAI. Your tracked list stays on your iPad/iPhone.</p>
                     <div class="hero-chip-row">
                         <div class="chip">Tracks TV & Movies</div>
                         <div class="chip">AI Summaries</div>
-                        <div class="chip">OpenAI + TMDb</div>
                     </div>
                 </aside>
             </section>
 
             <section>
                 <div class="section-title-row">
-                    <h2>Search Results</h2>
+                    <h2>Results</h2>
                     <span id="resultsMeta" style="color:var(--text-muted); font-size:13px;"></span>
                 </div>
                 <div id="results" class="results-grid"></div>
