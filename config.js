@@ -1,10 +1,10 @@
 // ---- Global config for the web front end ----
 
 // ⭐ Replace this with your actual Render backend URL
-export const API_BASE_URL = "https://keepup-backend.onrender.com";
+export const API_BASE_URL = "https://keepup-backend-5ilq.onrender.com";
 
 // ⭐ TMDb API key (same as your previous project – consider proxying via backend later)
-export const TMDB_API_KEY = "YOUR_TMDB_API_KEY_HERE";
+export const TMDB_API_KEY = "336f6146d27f9f039eb0826180e43b99";
 
 // TMDb base URLs
 export const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w500";
