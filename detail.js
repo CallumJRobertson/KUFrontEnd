@@ -28,6 +28,9 @@ $(document).ready(function() {
 function fetchAI(showName, isTV) {
     $("#aiStatus").show(); // Show the box
     
+    // Clear any previous cache status
+    $("#cacheStatus").hide().text(""); 
+    
     $.ajax({
         url: window.CONFIG.API_BASE_URL + "/api/show-status",
         type: "POST",
@@ -35,6 +38,15 @@ function fetchAI(showName, isTV) {
         data: JSON.stringify({ showName: showName, isTV: isTV }),
         success: function(res) {
             let html = `<strong>${res.status || "Unknown"}</strong><br>${res.summary}`;
+            
+            // ✅ NEW CACHE LOGIC: Check and display cache status
+            if (res.cached === true) {
+                $("#cacheStatus")
+                    .text("(CACHED)")
+                    .show()
+                    .removeClass('ai-error'); // Ensure no old error style remains
+            }
+
             if (res.sources && res.sources.length) {
                 html += `<div style="margin-top:10px; font-size:12px; color:#9ca3af;">Sources: `;
                 res.sources.forEach((s, i) => html += `<a href="${s.url}" target="_blank" style="color:#6366f1; margin-right:5px;">[${i+1}]</a>`);
@@ -44,6 +56,7 @@ function fetchAI(showName, isTV) {
         },
         error: function() {
             $("#aiOutputSection").html(`<span style="color:#f87171;">Backend offline.</span>`);
+            $("#cacheStatus").text("ERROR").show().addClass('ai-error');
         }
     });
 }
