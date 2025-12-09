@@ -1,64 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <title>KeepUp – Popular</title>
+    <title>Popular - KeepUp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-  </head>
-  <body class="dark-mode">
-    <div class="app-shell">
-      <header class="navbar">
-        <div class="nav-left">
-          <a href="index.html" class="logo-pill">
-            <span class="logo-dot"></span>
-            <div>
-              <div class="logo-text-main">KeepUp</div>
-              <div class="logo-text-sub">TV & Movie tracker</div>
-            </div>
-          </a>
-          <nav class="nav-links">
+</head>
+<body>
+    <header class="navbar">
+        <a href="index.html" class="logo-text-main">KeepUp</a>
+        <nav class="nav-links">
             <a href="index.html">Search</a>
-            <a href="popular.html" class="nav-active">Popular</a>
-          </nav>
-        </div>
+            <a href="popular.html" class="active">Popular</a>
+        </nav>
+    </header>
 
-        <div class="toggle-container">
-          <label class="switch">
-            <input type="checkbox" id="darkModeToggle" />
-            <span class="slider round"></span>
-          </label>
-          <label
-            id="darkModeToggleLabel"
-            for="darkModeToggle"
-            class="toggle-label-text"
-            >Light mode</label
-          >
-        </div>
-      </header>
-
-      <main>
-        <div class="section-title-row">
-          <h2>Popular right now</h2>
-          <span id="popularMeta">From TMDb’s trending lists</span>
+    <main>
+        <div style="text-align: center; margin-top: 40px;">
+            <h2>Trending Now</h2>
+            <p style="color: var(--text-muted); font-size: 14px;">Top rated on TMDb today</p>
         </div>
 
         <div class="filter-row">
-          <button class="filter-button active" data-type="movie">
-            Popular Movies
-          </button>
-          <button class="filter-button" data-type="tv">
-            Popular TV Shows
-          </button>
+            <button class="filter-button active" data-type="movie">Movies</button>
+            <button class="filter-button" data-type="tv">TV Shows</button>
         </div>
 
         <div id="popularGrid" class="results-grid"></div>
-      </main>
-    </div>
+    </main>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="config.js"></script>
-    <script src="script.js"></script>
     <script src="popular.js"></script>
-  </body>
+</body>
 </html>
