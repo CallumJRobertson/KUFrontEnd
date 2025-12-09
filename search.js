@@ -4,6 +4,12 @@
   const resultsEl = $("#results");
   const resultsMetaEl = $("#resultsMeta");
 
+  // Bind Enter key and Button click
+  $("#searchBtn").on("click", searchContent);
+  $("#searchInput").on("keypress", function (e) {
+    if (e.which === 13) searchContent();
+  });
+
   function displayResults(results, type) {
     resultsEl.empty();
 
@@ -16,10 +22,11 @@
 
     results.forEach((item) => {
       const title = item.title || item.name || "Untitled";
-      const overview = item.overview || "";
+      // 👇 FIX: Use window.CONFIG
       const poster = item.poster_path
-        ? `${TMDB_IMAGE_BASE}${item.poster_path}`
-        : TMDB_POSTER_PLACEHOLDER;
+        ? `${window.CONFIG.TMDB_IMAGE_BASE}${item.poster_path}`
+        : window.CONFIG.TMDB_POSTER_PLACEHOLDER;
+        
       const year =
         (item.release_date || item.first_air_date || "").split("-")[0] || "—";
       const rating = item.vote_average
@@ -40,6 +47,7 @@
       `);
 
       card.on("click", () => {
+        // If searching 'multi' or general, try to detect type, otherwise fallback to search selector
         const detailType = type || $("#searchType").val();
         window.location.href = `detail.html?id=${id}&type=${detailType}`;
       });
@@ -50,21 +58,20 @@
 
   function searchContent() {
     const query = $("#searchInput").val().trim();
-    const type = $("#searchType").val();
+    const type = $("#searchType").val(); // 'movie' or 'tv'
 
     if (!query) {
       resultsMetaEl.text("Type something to search.");
       return;
     }
 
+    // 👇 FIX: Use window.CONFIG.TMDB_API_KEY
+    const apiKey = window.CONFIG.TMDB_API_KEY;
+    
     const endpoint =
       type === "movie"
-        ? `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(
-            query
-          )}`
-        : `https://api.themoviedb.org/3/search/tv?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(
-            query
-          )}`;
+        ? `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(query)}`
+        : `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${encodeURIComponent(query)}`;
 
     resultsMetaEl.text("Searching…");
 
@@ -74,14 +81,7 @@
       })
       .fail((err) => {
         console.error("TMDb search error", err);
-        resultsMetaEl.text("There was a problem talking to TMDb.");
+        resultsMetaEl.text("There was a problem talking to TMDb. Check Console.");
       });
   }
-
-  $("#searchBtn").on("click", searchContent);
-  $("#searchInput").on("keypress", (event) => {
-    if (event.which === 13) {
-      searchContent();
-    }
-  });
 })();
